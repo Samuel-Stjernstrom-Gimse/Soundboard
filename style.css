@@ -1,0 +1,78 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, serif;
+    font-size: large;
+    font-weight: bolder;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #282828;
+}
+
+#soundButton{
+    height: 100px;
+    width: 100px;
+    background-color: #484747;
+    margin-top: 10px;
+    padding: 10px;
+    background-size: cover;
+}
+
+#obj {
+    height: 70px;
+    width: 80px;
+    object-fit: cover;
+    background-size: cover;
+}
+
+#buttons {
+    width: 70vw;
+    margin-top: 5%;
+    margin-left: 10%;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#sounds {
+    margin-top: 20px;
+    width: 70vw;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+#soundButton, #edit-btn {
+    background-color: #0c0b0b;
+    border: 2px solid darkcyan;
+    border-radius: 20px;
+    transition: 0.9s;
+}
+
+#soundButton:active {
+    transition: 0.1s;
+    background-color: #68ffc8;
+    box-shadow: 0 0 20px #67fdc6;
+}
+
+#edit-btn {
+    position: fixed;
+    bottom: 4%;
+    right: 2%;
+    height: 50px;
+    width: 200px;
+    background-color: greenyellow;
+}
+
