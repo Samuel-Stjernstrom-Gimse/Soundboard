@@ -2,6 +2,7 @@ import { images, soundFiles } from './fileNames.js';
 const editBtn = document.getElementById('edit-btn');
 const buttons = document.getElementById('buttons');
 const sounds = document.getElementById('sounds');
+const editTips = document.getElementById('tip');
 const keyBoardArray = ['1', '2', '3', '4', 'q', 'w', 'e', 'r', 'a', 's', 'd', 'f', 'z', 'x', 'c', 'v'];
 let btnArray = [];
 let activeSoundFile = '';
@@ -12,9 +13,6 @@ function createSoundBtn(id) {
         id: id,
         filename: 'sounds/18076__daven__01_sb_bass_hit_c.wav'
     };
-}
-function buttonEvent(sBtn) {
-    sBtn.style;
 }
 editBtn.addEventListener('click', () => {
     edit = !edit;
@@ -29,8 +27,13 @@ editBtn.addEventListener('click', () => {
 for (let i = 0; i <= 15; i++) {
     const soundBtnObj = createSoundBtn(i);
     const soundButton = document.createElement('div');
+    const keyName = document.createElement('h2');
+    keyName.textContent = keyBoardArray[i];
+    keyName.style.color = 'white';
     soundButton.id = 'soundButton';
     btnArray.push(soundBtnObj);
+    soundBtnObj.filename = `sounds/${soundFiles[i]}`;
+    soundButton.style.backgroundImage = `url('img/${images[i]}')`;
     soundButton.addEventListener('click', () => {
         let sound = new Audio(soundBtnObj.filename);
         if (!edit) {
@@ -44,9 +47,9 @@ for (let i = 0; i <= 15; i++) {
     window.addEventListener('keydown', (e) => {
         if (e.key === keyBoardArray[i]) {
             let sound = new Audio(soundBtnObj.filename);
-            document.body.style.backgroundColor = '#202020';
             if (!edit) {
                 sound.play().then();
+                soundButton.style.backgroundColor = 'white';
             }
             else {
                 soundBtnObj.filename = activeSoundFile;
@@ -56,8 +59,9 @@ for (let i = 0; i <= 15; i++) {
     });
     window.addEventListener('keyup', (e) => {
         if (e.key === keyBoardArray[i])
-            document.body.style.backgroundColor = '#282828';
+            soundButton.style.backgroundColor = 'black';
     });
+    soundButton.append(keyName);
     buttons.append(soundButton);
 }
 for (let i = 0; i <= images.length; i++) {

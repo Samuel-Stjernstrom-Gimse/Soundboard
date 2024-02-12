@@ -76,3 +76,13 @@ body{
     background-color: greenyellow;
 }
 
+#tip {
+    position: fixed;
+    bottom: 15%;
+    right: 2%;
+    height: 50px;
+    width: 200px;
+    font-size: 13px;
+    color: white;
+}
+

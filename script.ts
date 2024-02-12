@@ -3,6 +3,7 @@ import { images, soundFiles } from './fileNames.js'
 const editBtn = document.getElementById('edit-btn') as HTMLButtonElement
 const buttons = document.getElementById('buttons') as HTMLDivElement
 const sounds = document.getElementById('sounds') as HTMLDivElement
+const editTips = document.getElementById('tip') as HTMLHeadingElement
 const keyBoardArray: string[] = ['1', '2', '3', '4', 'q', 'w', 'e', 'r', 'a', 's', 'd', 'f', 'z', 'x', 'c', 'v']
 
 let btnArray: { id: number; filename: string }[] = []
@@ -17,9 +18,6 @@ function createSoundBtn(id: number): { id: number; filename: string } {
 	}
 }
 
-function buttonEvent(sBtn: HTMLDivElement): void {
-	sBtn.style
-}
 
 editBtn.addEventListener('click', (): void => {
 	edit = !edit
@@ -35,8 +33,13 @@ editBtn.addEventListener('click', (): void => {
 for (let i: number = 0; i <= 15; i++) {
 	const soundBtnObj: { id: number; filename: string } = createSoundBtn(i)
 	const soundButton = document.createElement('div') as HTMLDivElement
+	const keyName = document.createElement('h2') as HTMLHeadingElement
+	keyName.textContent = keyBoardArray[i]
+	keyName.style.color = 'white'
 	soundButton.id = 'soundButton'
 	btnArray.push(soundBtnObj)
+	soundBtnObj.filename = `sounds/${soundFiles[i]}`
+	soundButton.style.backgroundImage = `url('img/${images[i]}')`
 
 	soundButton.addEventListener('click', (): void => {
 		let sound: HTMLAudioElement = new Audio(soundBtnObj.filename) //  get from array
@@ -52,9 +55,9 @@ for (let i: number = 0; i <= 15; i++) {
 	window.addEventListener('keydown', (e): void => {
 		if (e.key === keyBoardArray[i]) {
 			let sound: HTMLAudioElement = new Audio(soundBtnObj.filename) //  get from array
-			document.body.style.backgroundColor = '#202020'
 			if (!edit) {
 				sound.play().then()
+				soundButton.style.backgroundColor = 'white'
 			} else {
 				soundBtnObj.filename = activeSoundFile
 				soundButton.style.backgroundImage = activeImageFile
@@ -62,9 +65,11 @@ for (let i: number = 0; i <= 15; i++) {
 		}
 	})
 	window.addEventListener('keyup', (e): void => {
-		if (e.key === keyBoardArray[i]) document.body.style.backgroundColor = '#282828'
+		if (e.key === keyBoardArray[i])
+		soundButton.style.backgroundColor = 'black'
 	})
 
+	soundButton.append(keyName)
 	buttons.append(soundButton)
 }
 for (let i = 0; i <= images.length; i++) {
